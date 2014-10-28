@@ -1,8 +1,5 @@
 #!/bin/sh
 
-if [ -f $1/.vraptor ]; then
-  echo "VRaptor"
-  exit 0
-else
-  exit 1
-fi
+echo "gnarus detected!"
+
+exit 0
