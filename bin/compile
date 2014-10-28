@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+set -e
+
+# Parse args
+export BUILD_DIR=$1
+export CACHE_DIR=$2
+
+BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
+
+source $BIN_DIR/install_jdk
+source $BIN_DIR/install_node $1 $2
+source $BIN_DIR/install_ant $1 $2
+echo -n "-----> Installing gnarus..."
+
+
+$ANT_HOME/bin/ant -Duser.home=${BUILD_DIR} \
+  -Dgnarus.environment=production -Dgnarus.product=alura \
+  clear resolve create-war
