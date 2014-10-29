@@ -9,14 +9,15 @@ export CACHE_DIR=$2
 
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 
-source $BIN_DIR/install_jdk
+install_wget $CACHE_DIR
+install_java $CACHE_DIR $BUILD_DIR
 source $BIN_DIR/install_node $1 $2
 source $BIN_DIR/install_ant $1 $2
 echo -n "-----> Installing gnarus..."
 
 echo $JAVA_HOME
 
-$JAVA_HOME/bin/javac -version
+
 
 $ANT_HOME/bin/ant -Duser.home=${BUILD_DIR} \
   -Dgnarus.environment=production -Dgnarus.product=alura \
