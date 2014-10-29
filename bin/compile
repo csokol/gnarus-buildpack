@@ -26,3 +26,8 @@ echo $JAVA_HOME
 $ANT_HOME/bin/ant -Duser.home=${BUILD_DIR} \
   -Dgnarus.environment=acceptance -Dgnarus.product=alura \
   clear resolve create-war
+
+
+rm -rf ${BUILD_DIR}/node_modules
+rm -rf ${BUILD_DIR}/src/
+rm -rf ${BUILD_DIR}/lib/
