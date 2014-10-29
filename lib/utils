@@ -100,8 +100,13 @@ install_java() {
     error "Unable to retrieve JDK."
   fi
 
+  PROFILE_PATH="$BUILD_DIR/.profile.d/java.sh"
+  mkdir -p $(dirname $PROFILE_PATH)
   export JAVA_HOME="${build_dir}/.jdk"
   export PATH="${build_dir}/.jdk/bin:${PATH}"
+  echo 'export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS -Djava.rmi.server.useCodebaseOnly=true"' >> $PROFILE_PATH
+  echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
+  echo 'export JAVA_HOME="/app/.jdk/"' >> $PROFILE_PATH
 }
 
 install_jce() {
