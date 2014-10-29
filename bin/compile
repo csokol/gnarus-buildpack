@@ -9,6 +9,8 @@ export CACHE_DIR=$2
 
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 
+mkdir -p $CACHE_DIR
+
 . $BIN_DIR/../lib/utils
 
 install_wget $CACHE_DIR
