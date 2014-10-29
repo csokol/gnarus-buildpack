@@ -9,6 +9,8 @@ export CACHE_DIR=$2
 
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 
+. $BIN_DIR/../lib/utils
+
 install_wget $CACHE_DIR
 install_java $CACHE_DIR $BUILD_DIR
 source $BIN_DIR/install_node $1 $2
