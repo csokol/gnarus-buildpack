@@ -3,5 +3,5 @@
 cat << EOF
 ---
 default_process_types:
-  web: java -jar src/build/heroku/webapp-runner.jar target/gnarus.war
+  web: java -jar heroku/webapp-runner.jar target/gnarus.war
 EOF
