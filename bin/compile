@@ -6,7 +6,7 @@ set -e
 # Parse args
 export BUILD_DIR=$1
 export CACHE_DIR=$2
-ENV_DIR=$2
+ENV_DIR=$3
 export GNARUS_PRODUCT=$(cat $ENV_DIR/GNARUS_PRODUCT)
 export GNARUS_ENV=$(cat $ENV_DIR/GNARUS_ENV)
 
