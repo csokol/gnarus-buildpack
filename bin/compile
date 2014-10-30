@@ -6,6 +6,9 @@ set -e
 # Parse args
 export BUILD_DIR=$1
 export CACHE_DIR=$2
+ENV_DIR=$2
+export $GNARUS_PRODUCT=$(cat $ENV_DIR/GNARUS_PRODUCT)
+export $GNARUS_ENV=$(cat $ENV_DIR/GNARUS_ENV)
 
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 
@@ -28,15 +31,15 @@ if [ -z "$GNARUS_PRODUCT" ]; then
   echo "-----> You must define GNARUS_PRODUCT environment variable to deploy gnarus! <-----"
   exit 1
 fi
-if [ -z "$GNARUS_ENVIRONMENT" ]; then
-  echo "-----> You must define GNARUS_ENVIRONMENT environment variable to deploy gnarus! <-----"
+if [ -z "$GNARUS_ENV" ]; then
+  echo "-----> You must define GNARUS_ENV environment variable to deploy gnarus! <-----"
   exit 1
 fi
 
-echo -n "-----> Installing gnarus ($GNARUS_PRODUCT)..."
+echo -n "-----> Installing gnarus ($GNARUS_ENV, $GNARUS_PRODUCT)..."
 echo
 ANT_ARGS="-Duser.home=${BUILD_DIR} \
-  -Dgnarus.environment=$GNARUS_ENVIRONMENT -Dgnarus.product=$GNARUS_PRODUCT \
+  -Dgnarus.environment=$GNARUS_ENV -Dgnarus.product=$GNARUS_PRODUCT \
   clear resolve create-war"
 
 echo "Running ant with the following args: "
