@@ -22,11 +22,15 @@ if [ -z "$GNARUS_PRODUCT" ]; then
   echo "-----> You must define GNARUS_PRODUCT environment variable to deploy gnarus! <-----"
   exit 1
 fi
+if [ -z "$GNARUS_ENVIRONMENT" ]; then
+  echo "-----> You must define GNARUS_ENVIRONMENT environment variable to deploy gnarus! <-----"
+  exit 1
+fi
 
 echo -n "-----> Installing gnarus ($GNARUS_PRODUCT)..."
 
 $ANT_HOME/bin/ant -Duser.home=${BUILD_DIR} \
-  -Dgnarus.environment=acceptance -Dgnarus.product=alura \
+  -Dgnarus.environment=$GNARUS_ENVIRONMENT -Dgnarus.product=$GNARUS_PRODUCT \
   clear resolve create-war
 
 
