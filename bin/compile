@@ -13,8 +13,14 @@ mkdir -p $CACHE_DIR
 
 . $BIN_DIR/../lib/utils
 
+statusn "Installing wget..."
 install_wget $CACHE_DIR
+echo " version $(wget_version) installed"
+
+statusn "Installing JDK..."
 install_java $CACHE_DIR $BUILD_DIR
+echo " version $(java_version) installed"
+
 source $BIN_DIR/install_node $1 $2
 source $BIN_DIR/install_ant $1 $2
 
@@ -28,10 +34,15 @@ if [ -z "$GNARUS_ENVIRONMENT" ]; then
 fi
 
 echo -n "-----> Installing gnarus ($GNARUS_PRODUCT)..."
-
-$ANT_HOME/bin/ant -Duser.home=${BUILD_DIR} \
+echo
+ANT_ARGS="-Duser.home=${BUILD_DIR} \
   -Dgnarus.environment=$GNARUS_ENVIRONMENT -Dgnarus.product=$GNARUS_PRODUCT \
-  clear resolve create-war
+  clear resolve create-war"
+
+echo "Running ant with the following args: "
+echo "-----> $ANT_ARGS"
+
+$ANT_HOME/bin/ant
 
 
 rm -rf ${BUILD_DIR}/node_modules
