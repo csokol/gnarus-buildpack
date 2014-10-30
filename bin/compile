@@ -45,7 +45,7 @@ ANT_ARGS="-Duser.home=${BUILD_DIR} \
 echo "Running ant with the following args: "
 echo "-----> $ANT_ARGS"
 
-$ANT_HOME/bin/ant
+$ANT_HOME/bin/ant $ANT_ARGS
 
 
 rm -rf ${BUILD_DIR}/node_modules
